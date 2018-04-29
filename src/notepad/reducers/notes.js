@@ -33,6 +33,27 @@ const initialState = [
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case 'SET_TITLE':
+            return state.map(note => {
+                if (note.id !== action.id) {
+                    return note;
+                }
+                return {
+                    ...note,
+                    title: action.title,
+                }
+            });
+        case 'SET_CONTENT':
+            return state.map(note => {
+                if (note.id !== action.id) {
+                    return note;
+                }
+
+                return {
+                    ...note,
+                    content: action.content,
+                }
+            });
         default:
             return state;
     }
