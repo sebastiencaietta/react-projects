@@ -1,0 +1,23 @@
+.NoteListItem {
+    background-color: #BBDEFB;
+    border-radius: 0;
+    height: 80px;
+    min-height: 80px;
+}
+
+.NoteListItem:first-child, .NoteListItem:last-child {
+    border-radius: 0;
+}
+
+.NoteListItem:hover {
+    background-color: #90CAF9;
+}
+
+.NoteListItem.active {
+    background-color: #64B5F6;
+    border-color: #90CAF9;
+}
+
+.NoteListItem:focus {
+    outline: none;
+}

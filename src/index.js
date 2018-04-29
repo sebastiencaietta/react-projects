@@ -3,18 +3,22 @@ import './index.css'
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from "react-redux";
 import './index.css';
 import App from './App';
 import {Router} from 'react-router-dom'
-import {history} from './store'
+import store, {history} from './store'
 import registerServiceWorker from './registerServiceWorker';
 
 const target = document.querySelector('#root');
 
 ReactDOM.render(
-    <Router history={history}>
-        <App/>
-    </Router>,
+    <Provider store={store}>
+        <Router history={history}>
+            <App/>
+        </Router>
+    </Provider>
+    ,
     target
 );
 registerServiceWorker();
