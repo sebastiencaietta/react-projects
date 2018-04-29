@@ -13,3 +13,21 @@ export function setContent(id, content) {
         content
     }
 }
+
+export function addNote() {
+    return {
+        type: 'ADD_NOTE',
+    }
+}
+
+export function deleteNote(id) {
+    return {
+        type: 'DELETE_NOTE',
+        id
+    }
+}
+
+export function isLastNoteEmpty(notes) {
+    const lastNote = notes[0];
+    return lastNote && lastNote.title === '' && lastNote.content === '';
+}

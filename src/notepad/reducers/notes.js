@@ -1,3 +1,5 @@
+import {isLastNoteEmpty} from "../actions";
+
 const initialState = [
     {
         id: 1,
@@ -29,7 +31,16 @@ const initialState = [
         title: 'Fifth step',
         content: 'Use localStorage to get and save the notes'
     },
-];
+], newNote = () => {
+    let autoIncrement = parseInt(localStorage.getItem('notes_auto_increment'), 10) || 1;
+    localStorage.setItem('notes_auto_increment', autoIncrement + 1);
+
+    return {
+        id: autoIncrement,
+        title: '',
+        content: '',
+    }
+};
 
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -54,6 +65,13 @@ export default (state = initialState, action) => {
                     content: action.content,
                 }
             });
+        case 'ADD_NOTE':
+            return isLastNoteEmpty(state) ? state : [
+                newNote(),
+                ...state,
+            ];
+        case 'DELETE_NOTE':
+            return state.filter(note => note.id !== action.id);
         default:
             return state;
     }
